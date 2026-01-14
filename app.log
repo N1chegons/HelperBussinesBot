@@ -1,0 +1,8 @@
+2026-01-14 19:06:31 - src.logger - INFO - Это сообщение появится в консоли и файле
+2026-01-14 19:06:31 - src.api.auth.repository - INFO - Это сообщение появится в консоли и файле
+2026-01-14 19:17:40 - src.api.auth.repository - INFO - User has created.
+2026-01-14 19:18:52 - src.api.auth.repository - INFO - User has created.2, nichegons
+2026-01-14 19:19:59 - src.api.auth.repository - WARNING - User with TG ID <12> not found.
+2026-01-14 19:55:11 - src.api.auth.repository - INFO - User has created. Arguments:0, string
+2026-01-14 19:59:01 - src.api.auth.repository - WARNING - User with TG ID: 0 found. Responce: 3, string, None
+2026-01-14 19:59:01 - src.api.auth.repository - WARNING - User already exists: 0, arguments: 0, string
