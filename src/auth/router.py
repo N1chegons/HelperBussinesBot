@@ -1,14 +1,14 @@
 from fastapi import APIRouter
 
-from src.api.auth.repository import UserRepository
-from src.api.auth.schemas import UserCreate
+from src.auth.repository import UserRepository
+from src.auth.schemas import UserCreate
 
 router = APIRouter(
     prefix="/user",
     tags=["User"]
 )
 
-@router.get("/get_user/{telegram_id}")
+@router.get("/get_user")
 async def get_user_by_telegram_id(telegram_id: int):
     user = await UserRepository.get_user_by_telegram_id_repository(telegram_id)
     return user
@@ -17,3 +17,8 @@ async def get_user_by_telegram_id(telegram_id: int):
 async def register_user(user_schemas: UserCreate):
     new_user = await UserRepository.create_user_repository(user_schemas)
     return new_user
+
+@router.put("/add_number")
+async def add_phone_number(telegram_id: int, phone: str):
+    add_phone = await UserRepository.add_phone_number_repository(telegram_id, phone)
+    return add_phone

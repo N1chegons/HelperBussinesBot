@@ -1,11 +1,10 @@
 import datetime
 
-from pydantic import EmailStr
 from sqlalchemy import text, BigInteger
 from sqlalchemy.orm import Mapped
 from sqlalchemy.testing.schema import mapped_column
 
-from src.api.db import Base
+from src.db import Base
 
 
 class User(Base):

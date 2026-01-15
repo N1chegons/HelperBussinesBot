@@ -10,6 +10,8 @@ class Settings(BaseSettings):
 
     RESEND_API_KEY: str
 
+    TOKEN_TELEGRAM_BOT: str
+
     @property
     def DB_URL(self):
         return f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"

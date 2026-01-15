@@ -1,31 +1,23 @@
 from fastapi import HTTPException
-from pydantic import Field
 from sqlalchemy import select, insert, update
-from sqlalchemy.exc import IntegrityError
 from starlette import status
-from src.api.auth.exceptions import UserNotFoundError, UserCreatedError, UserAlreadyExistsError, UserUpdateError
-from src.api.auth.models import User
-from src.api.auth.schemas import UserCreate
-from src.api.db import async_session
+from src.auth.exceptions import UserNotFoundError, UserCreatedError, UserUpdateError
+from src.auth.models import User
+from src.auth.schemas import UserCreate
+from src.db import async_session
 from src.logger import get_logger
 
 logger = get_logger(__name__)
 
 
 class UserRepository:
-    @staticmethod
-    async def get_user_by_telegram_id_repository(tg_id: int):
+    @classmethod
+    async def get_user_by_telegram_id_repository(cls, tg_id: int):
         async with async_session() as session:
             query = select(User).filter_by(telegram_id=tg_id)
             try:
                 result = await session.execute(query)
                 user = result.scalar_one_or_none()
-                if not user:
-                    logger.warning(f"User with TG ID <{tg_id}> not found.")
-                    raise HTTPException(
-                        status_code=status.HTTP_404_NOT_FOUND, detail=f"User with Telegram ID {tg_id} not found."
-                    )
-                logger.warning(f"User with TG ID: {tg_id} found. Responce: {user.id}, {user.nickname}, {user.phone}")
                 return user
             except UserNotFoundError:
                 logger.error(f"Servers Erorrs! Arguments: {tg_id}")
@@ -43,7 +35,7 @@ class UserRepository:
                 )
                 raise HTTPException(
                     status_code=status.HTTP_409_CONFLICT,
-                    detail=f"User with telegram_id {user_data.telegram_id} already exists"
+                    detail=f"User with telegram id {user_data.telegram_id} already exists"
                 )
 
             data = user_data.model_dump()
@@ -63,10 +55,10 @@ class UserRepository:
     @classmethod
     async def add_phone_number_repository(cls, tg_id: int, phone: str):
         async with async_session() as session:
-            phone = await UserRepository.get_user_by_telegram_id_repository(tg_id)
-            if not phone.phone == "NULL":
+            phone_user = await UserRepository.get_user_by_telegram_id_repository(tg_id)
+            if phone_user.phone is not None:
                 logger.warning(
-                    f"User TG ID {tg_id}already have phone number:{phone}, arguments: {phone}"
+                    f"User TG ID {tg_id} already have phone number:{phone}, arguments: {phone}"
                 )
                 raise HTTPException(
                     status_code=status.HTTP_409_CONFLICT,
