@@ -28,8 +28,8 @@ class UserRepository:
     @classmethod
     async def create_user_repository(cls, user_data: UserCreate):
         async with async_session() as session:
-            user = await UserRepository.get_user_by_telegram_id_repository(user_data.telegram_id)
-            if user:
+            query = await UserRepository.get_user_by_telegram_id_repository(user_data.telegram_id)
+            if query:
                 logger.warning(
                     f"User already exists: {user_data.telegram_id}, arguments: {user_data.telegram_id}, {user_data.nickname}"
                 )
@@ -40,10 +40,10 @@ class UserRepository:
 
             data = user_data.model_dump()
             stmt = insert(User).values(**data).returning(User)
-            new_user = await session.execute(stmt)
             try:
+                new_user = await session.execute(stmt)
                 await session.commit()
-                logger.info(f"User has created. Arguments:{user_data.telegram_id}, {user_data.nickname}")
+                logger.info(f"User has created. Arguments: {user_data.telegram_id}, {user_data.nickname}")
                 return {"message": "User has created."}
 
             except UserCreatedError:

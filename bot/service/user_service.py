@@ -16,7 +16,7 @@ except ImportError:
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
 
-base_url="http://127.0.0.1:1011"
+base_url="http://127.0.0.1:9000"
 AsyncClient = aiohttp.ClientSession
 
 class UserBotRepository:
@@ -52,28 +52,28 @@ class UserBotRepository:
             params = {
                 "telegram_id": telegram_id
             }
-            get_user_request = await session.get(f"{base_url}/user/get_user", params=params)
-            if get_user_request.status == 200:
-                logger.info(f"The user {nickname}, id:{telegram_id} is already registered.")
-                text = f"✅ Приветствую {nickname}\n\nТы уже зарегестрирован.\n\nТвой id: {telegram_id}"
+            try:
+                get_user_request = await session.get(f"{base_url}/user/get_user", params=params)
+                if get_user_request.status == 200:
+                    logger.info(f"The user {nickname}, id:{telegram_id} is already registered.")
+                    text = f"✅ Приветствую {nickname}\n\nТы уже зарегестрирован.\n\nТвой id: {telegram_id}"
 
-            elif get_user_request.status == 404:
-                try:
+                elif get_user_request.status == 404:
                     request = await session.post(f"{base_url}/user/register", json=data)
-                except aiohttp.ClientError as e:
-                    logger.error(
-                        f"Network error during user registration {nickname}, id: {telegram_id}: {e}")
-                    text = f"🌐 Подключение к серверу потеряно.Попробуйте позже."
+                    if request.status == 200:
+                        logger.info(
+                            f"The user {nickname} has registered. Id: {telegram_id}")
+                        text = f"🎉 Приветствую {nickname}\n\nТы успешно зарегстрирован.\n\nТвой id: {telegram_id}"
 
-                if request.status == 200:
-                    logger.info(
-                        f"The user {nickname} has registered. Id: {telegram_id}")
-                    text = f"🎉 Приветствую {nickname}\n\nТы успешно зарегстрирован.\n\nТвой id: {telegram_id}"
+                    else:
+                        logger.warning(
+                            f"The user {nickname}, id {telegram_id} was unable to register.")
+                        text = f"❌ Не получилось зарегестрироваться."
 
-                else:
-                    logger.warning(
-                        f"The user {nickname}, id {telegram_id} was unable to register.")
-                    text = f"❌ Не получилось зарегестрироваться."
+            except aiohttp.ClientError as e:
+                logger.error(
+                    f"Network error during user registration {nickname}, id: {telegram_id}: {e}")
+                text = f"🌐 Подключение к серверу потеряно.Попробуйте позже."
 
             return {"text": text}
 

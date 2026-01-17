@@ -40,3 +40,5 @@
 2026-01-15 23:26:51 - src.auth.repository - WARNING - User with TG ID <23> not found.
 2026-01-15 23:28:43 - src.auth.repository - WARNING - User with TG ID <23> not found.
 2026-01-15 23:29:22 - src.auth.repository - INFO - User has created. Arguments:23, erer
+2026-01-17 19:16:25 - src.auth.repository - INFO - User has created. Arguments:1, string
+2026-01-17 19:24:40 - src.auth.repository - INFO - User has created. Arguments:8177043133, Nichegons

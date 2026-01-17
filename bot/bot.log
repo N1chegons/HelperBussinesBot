@@ -255,3 +255,31 @@ aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host 127.0.0.1
 2026-01-15 23:32:38 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
 2026-01-15 23:37:27 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
 2026-01-15 23:44:04 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
+2026-01-16 17:17:43 - TeleBot - ERROR - Unknown error: TimeoutError
+2026-01-16 17:17:43 - TeleBot - ERROR - Unhandled exception (full traceback for debug level): Request timeout. Request: method=get url=getUpdates params=<aiohttp.formdata.FormData object at 0x000001F64E0A8850> files=None request_timeout=300
+2026-01-16 22:58:00 - TeleBot - ERROR - Aiohttp ClientError: ClientOSError
+2026-01-16 22:58:00 - TeleBot - ERROR - Unhandled exception (full traceback for debug level): Request timeout. Request: method=get url=getUpdates params=<aiohttp.formdata.FormData object at 0x000001F64FB444D0> files=None request_timeout=300
+2026-01-16 22:59:16 - TeleBot - ERROR - Aiohttp ClientError: ClientConnectorError
+2026-01-16 22:59:16 - TeleBot - ERROR - Unhandled exception (full traceback for debug level): Request timeout. Request: method=get url=getUpdates params=<aiohttp.formdata.FormData object at 0x000001F64E0A8850> files=None request_timeout=300
+2026-01-16 23:00:20 - TeleBot - ERROR - Aiohttp ClientError: ClientConnectorError
+2026-01-16 23:00:20 - TeleBot - ERROR - Unhandled exception (full traceback for debug level): Request timeout. Request: method=get url=getUpdates params=<aiohttp.formdata.FormData object at 0x000001F64F630310> files=None request_timeout=300
+2026-01-17 11:38:58 - TeleBot - ERROR - Unknown error: TimeoutError
+2026-01-17 11:38:58 - TeleBot - ERROR - Unhandled exception (full traceback for debug level): Request timeout. Request: method=get url=getUpdates params=<aiohttp.formdata.FormData object at 0x000001F64F4BEA50> files=None request_timeout=300
+2026-01-17 11:52:45 - TeleBot - ERROR - Unknown error: TimeoutError
+2026-01-17 11:52:45 - TeleBot - ERROR - Unhandled exception (full traceback for debug level): Request timeout. Request: method=get url=getUpdates params=<aiohttp.formdata.FormData object at 0x000001F64E9F0B90> files=None request_timeout=300
+2026-01-17 11:53:03 - TeleBot - ERROR - Aiohttp ClientError: ClientConnectorError
+2026-01-17 11:53:03 - TeleBot - ERROR - Unhandled exception (full traceback for debug level): Request timeout. Request: method=get url=getUpdates params=<aiohttp.formdata.FormData object at 0x000001F64E9F0B90> files=None request_timeout=300
+2026-01-17 11:53:04 - TeleBot - ERROR - Aiohttp ClientError: ClientConnectorDNSError
+2026-01-17 11:53:04 - TeleBot - ERROR - Unhandled exception (full traceback for debug level): Request timeout. Request: method=get url=getUpdates params=<aiohttp.formdata.FormData object at 0x000001F64FC4E590> files=None request_timeout=300
+2026-01-17 11:53:12 - TeleBot - ERROR - Aiohttp ClientError: ClientConnectorError
+2026-01-17 11:53:12 - TeleBot - ERROR - Unhandled exception (full traceback for debug level): Request timeout. Request: method=get url=getUpdates params=<aiohttp.formdata.FormData object at 0x000001F64FC4EBD0> files=None request_timeout=300
+2026-01-17 11:53:14 - TeleBot - ERROR - Aiohttp ClientError: ClientConnectorError
+2026-01-17 11:53:14 - TeleBot - ERROR - Unhandled exception (full traceback for debug level): Request timeout. Request: method=get url=getUpdates params=<aiohttp.formdata.FormData object at 0x000001F64FB44A10> files=None request_timeout=300
+2026-01-17 11:53:18 - TeleBot - ERROR - Aiohttp ClientError: ClientConnectorDNSError
+2026-01-17 11:53:18 - TeleBot - ERROR - Unhandled exception (full traceback for debug level): Request timeout. Request: method=get url=getUpdates params=<aiohttp.formdata.FormData object at 0x000001F64FB20AD0> files=None request_timeout=300
+2026-01-17 11:53:38 - TeleBot - ERROR - Aiohttp ClientError: ClientConnectorDNSError
+2026-01-17 11:53:38 - TeleBot - ERROR - Unhandled exception (full traceback for debug level): Request timeout. Request: method=get url=getUpdates params=<aiohttp.formdata.FormData object at 0x000001F64FB20AD0> files=None request_timeout=300
+2026-01-17 19:09:14 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
+2026-01-17 19:11:47 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
+2026-01-17 19:13:46 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
+2026-01-17 19:24:40 - service.user_service - INFO - The user Nichegons has registered. Id: 8177043133

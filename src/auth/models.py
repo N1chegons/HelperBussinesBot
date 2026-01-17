@@ -1,9 +1,11 @@
 import datetime
+from typing import List
 
 from sqlalchemy import text, BigInteger
-from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.testing.schema import mapped_column
 
+from src.appointments.models import Appointment
 from src.db import Base
 
 
@@ -17,4 +19,9 @@ class User(Base):
     registered_at: Mapped[datetime.datetime] = mapped_column(
         server_default=text(
             "TIMEZONE('utc', now())")
+    )
+
+    appointments: Mapped[List["Appointment"]] = relationship(
+        "Appointment",
+        back_populates="user"
     )

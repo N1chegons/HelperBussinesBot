@@ -1,4 +1,5 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
+from starlette import status
 
 from src.auth.repository import UserRepository
 from src.auth.schemas import UserCreate
@@ -11,6 +12,11 @@ router = APIRouter(
 @router.get("/get_user")
 async def get_user_by_telegram_id(telegram_id: int):
     user = await UserRepository.get_user_by_telegram_id_repository(telegram_id)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"User with telegram id {telegram_id} not found."
+        )
     return user
 
 @router.post("/register")
