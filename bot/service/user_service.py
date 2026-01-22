@@ -1,25 +1,24 @@
 import sys
 import os
 import aiohttp
+from dotenv import load_dotenv
+import logging
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.dirname(current_dir)
+load_dotenv()
+base_url = os.getenv("BASE_URL")
 
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
+logging.basicConfig(
+    level=logging.INFO,
+    handlers=[
+        logging.StreamHandler(sys.stdout),
+        logging.FileHandler('bot.log')
+    ],
+)
+logger = logging.getLogger(__name__)
 
-try:
-    from bot.logger import get_logger_bot
-    logger = get_logger_bot(__name__)
-except ImportError:
-    import logging
-    logging.basicConfig(level=logging.INFO)
-    logger = logging.getLogger(__name__)
-
-base_url="http://127.0.0.1:9000"
 AsyncClient = aiohttp.ClientSession
 
-class UserBotRepository:
+class UserBotService:
     # @staticmethod
     # async def get_user_bot_by_tg_id(telegram_id: int, nickname: str):
     #     async with AsyncClient() as session:
@@ -44,7 +43,7 @@ class UserBotRepository:
     @classmethod
     async def register_user_bot(cls, telegram_id: int, nickname: str):
         async with AsyncClient() as session:
-            text = "Message for crate user"
+            text = ""
             data = {
                 "telegram_id": telegram_id,
                 "nickname": nickname

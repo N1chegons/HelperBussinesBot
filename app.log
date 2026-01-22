@@ -42,3 +42,7 @@
 2026-01-15 23:29:22 - src.auth.repository - INFO - User has created. Arguments:23, erer
 2026-01-17 19:16:25 - src.auth.repository - INFO - User has created. Arguments:1, string
 2026-01-17 19:24:40 - src.auth.repository - INFO - User has created. Arguments:8177043133, Nichegons
+2026-01-21 20:45:58 - src.auth.repository - INFO - User has created. Arguments: 8177043133, Nichegons
+2026-01-21 21:58:18 - src.auth.repository - WARNING - User already exists: 8177043133, arguments: 8177043133, nichegons
+2026-01-22 13:27:00 - src.appointments.repository - WARNING - User with tg_id: 1 not founded.
+2026-01-22 14:05:25 - src.appointments.repository - INFO - Appointment for user 8177043133 Nichegons has created. Arguments: 8177043133

@@ -283,3 +283,22 @@ aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host 127.0.0.1
 2026-01-17 19:11:47 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
 2026-01-17 19:13:46 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
 2026-01-17 19:24:40 - service.user_service - INFO - The user Nichegons has registered. Id: 8177043133
+2026-01-21 20:45:00 - service.user_service - ERROR - Network error during user registration Nichegons, id: 8177043133: Cannot connect to host 127.0.0.1:9000 ssl:default [Удаленный компьютер отклонил это сетевое подключение]
+2026-01-21 20:45:58 - service.user_service - INFO - The user Nichegons has registered. Id: 8177043133
+2026-01-21 20:46:55 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
+2026-01-22 14:14:41 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
+2026-01-22 14:14:41 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
+2026-01-22 16:40:09 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
+2026-01-22 16:40:17 - service.appointments_service - INFO - The appointments list received successfully, for user id:8177043133
+2026-01-22 17:48:10 - TeleBot - ERROR - object NoneType can't be used in 'await' expression
+2026-01-22 17:55:51 - service.user_service - ERROR - Network error during user registration Nichegons, id: 8177043133: Cannot connect to host 127.0.0.1:5200 ssl:default [Удаленный компьютер отклонил это сетевое подключение]
+2026-01-22 17:56:02 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
+2026-01-22 17:56:53 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
+2026-01-22 17:57:12 - asyncio - ERROR - Unclosed connection
+client_connection: Connection<ConnectionKey(host='127.0.0.1', port=5200, is_ssl=False, ssl=True, proxy=None, proxy_auth=None, proxy_headers_hash=None)>
+2026-01-22 17:57:20 - service.appointments_service - INFO - The appointments list received successfully, for user id:8177043133
+2026-01-22 18:00:31 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
+2026-01-22 18:01:03 - service.appointments_service - INFO - The appointments list received successfully, for user id:8177043133
+2026-01-22 18:02:15 - service.appointments_service - INFO - The appointments list received successfully, for user id:8177043133
+2026-01-22 18:07:51 - service.user_service - INFO - The user Nichegons, id:8177043133 is already registered.
+2026-01-22 18:08:34 - service.appointments_service - INFO - The appointments list received successfully, for user id:8177043133
