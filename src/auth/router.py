@@ -24,6 +24,11 @@ async def register_user(user_schemas: UserCreate):
     new_user = await UserRepository.create_user_repository(user_schemas)
     return new_user
 
+@router.put("/add_timezone")
+async def add_timezone(telegram_id: int, timezone: str):
+    add_timezone_user = await UserRepository.add_timezone_repository(telegram_id, timezone)
+    return add_timezone_user
+
 @router.put("/add_number")
 async def add_phone_number(telegram_id: int, phone: str):
     add_phone = await UserRepository.add_phone_number_repository(telegram_id, phone)

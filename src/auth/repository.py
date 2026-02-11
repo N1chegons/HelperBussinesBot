@@ -53,6 +53,39 @@ class UserRepository:
                 )
 
     @classmethod
+    async def add_timezone_repository(cls, tg_id: int, timezone: str):
+        async with async_session() as session:
+            timezone_user = await UserRepository.get_user_by_telegram_id_repository(tg_id)
+            if timezone_user.timezone is not None:
+                logger.warning(
+                    f"User TG ID {tg_id} already have timezone:{timezone}, arguments: {timezone}"
+                )
+                raise HTTPException(
+                    status_code=status.HTTP_409_CONFLICT,
+                    detail=f"User with telegram_id {tg_id} already have timezone"
+                )
+
+            stmt = (
+                update(User)
+                .filter_by(telegram_id=tg_id)
+                .values(timezone=timezone)
+                .returning(User)
+            )
+            await session.execute(stmt)
+            try:
+                await session.commit()
+                logger.info(f"User TG ID: {tg_id} add timezone. Arguments: {timezone}")
+                return {
+                    "message": f"Timezone {timezone} has added."
+                }
+            except UserUpdateError:
+                logger.error(f"Servers Erorrs! Arguments: {timezone}")
+                raise HTTPException(
+                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Server error"
+                )
+
+
+    @classmethod
     async def add_phone_number_repository(cls, tg_id: int, phone: str):
         async with async_session() as session:
             phone_user = await UserRepository.get_user_by_telegram_id_repository(tg_id)
@@ -83,3 +116,4 @@ class UserRepository:
                 raise HTTPException(
                     status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Server error"
                 )
+

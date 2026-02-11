@@ -1,5 +1,6 @@
-from datetime import datetime, date, time
-from zoneinfo import ZoneInfo
+from datetime import datetime, date, time, timezone
+import pytz
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 
 def get_day_boundaries_in_utc(
@@ -18,20 +19,22 @@ def get_day_boundaries_in_utc(
     return start_utc, end_utc
 
 
-def convert_user_input_to_utc(
-        user_date: date,
-        user_time_str: str,
-        user_timezone: str
-) -> datetime:
-    hour, minute = map(int, user_time_str.split(":"))
 
-    user_tz = ZoneInfo(user_timezone)
+def convert_time_to_utc(
+        user_date: date,
+        time_str: str,
+        user_timezone: str
+):
+    hour, minute = map(int, time_str.split(":"))
+
+    user_tz = pytz.timezone(zone=user_timezone)
     local_dt = datetime.combine(
         user_date,
         time(hour, minute)
     ).replace(tzinfo=user_tz)
 
-    return local_dt.astimezone(ZoneInfo("UTC"))
+
+    return local_dt.astimezone(timezone.utc)
 
 
 def utc_to_local(utc_dt: datetime, user_timezone: str) -> datetime:

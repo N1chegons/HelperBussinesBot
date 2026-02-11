@@ -19,4 +19,3 @@ class UserView(BaseModel):
 class UserCreate(BaseModel):
     telegram_id: int
     nickname: str
-    timezone: str = "Europe/Moscow"

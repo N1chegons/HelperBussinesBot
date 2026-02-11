@@ -16,10 +16,7 @@ class User(Base):
     nickname: Mapped[str] = mapped_column(nullable=False)
     telegram_id: Mapped[int] = mapped_column(BigInteger, unique=True)
     phone: Mapped[str] = mapped_column(nullable=True)
-    timezone: Mapped[str] = mapped_column(
-        default="Europe/Moscow",
-        nullable=False
-    )
+    timezone: Mapped[str] = mapped_column(default=None, nullable=True)
     registered_at: Mapped[datetime.datetime] = mapped_column(
         server_default=text(
             "TIMEZONE('utc', now())")

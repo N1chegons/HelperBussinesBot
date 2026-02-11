@@ -2,12 +2,11 @@ import datetime
 
 from pydantic import BaseModel, ConfigDict, field_validator
 
-from src.appointments.models import Status
 
 class ViewAppointments(BaseModel):
     id: int
     phone: str
-    status: Status
+    title: str
     appointment_datetime: datetime.datetime
     created_at: datetime.datetime
     user_id: int
@@ -20,6 +19,7 @@ class ViewAppointments(BaseModel):
 
 
 class CreateAppointments(BaseModel):
+    telegram_id: int
     phone: str
     title: str
     appointment_date: datetime.date

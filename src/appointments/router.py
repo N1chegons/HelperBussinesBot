@@ -23,6 +23,11 @@ async def get_appointments_by_date(telegram_id: int, user_timezone: str,  date_a
     return appointments_sort_date_list
 
 @router.post("/create_appointment")
-async def create_appointment(telegram_id: int, appointment_data: CreateAppointments):
-    new_appointments = await AppointmentsRepository.create_user_appointment_repository(telegram_id, appointment_data)
+async def create_appointment(appointment_data: CreateAppointments):
+    new_appointments = await AppointmentsRepository.create_user_appointment_repository(appointment_data)
     return new_appointments
+
+@router.delete("/delete_appointment")
+async def delete_appointment(telegram_id: int, appointment_id: int):
+    deleted_appointment = await AppointmentsRepository.delete_user_appointment_repository(telegram_id, appointment_id)
+    return deleted_appointment
